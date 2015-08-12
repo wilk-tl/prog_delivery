@@ -5,6 +5,8 @@
  */
 package View;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Willy
@@ -29,10 +31,10 @@ public class TelaLogin extends javax.swing.JFrame {
     private void initComponents() {
 
         pLogin = new javax.swing.JPanel();
-        tfNome = new javax.swing.JTextField();
+        tfMatricula = new javax.swing.JTextField();
         lbNome = new javax.swing.JLabel();
         lbSenha = new javax.swing.JLabel();
-        tfsSenha = new javax.swing.JPasswordField();
+        pfSenha = new javax.swing.JPasswordField();
         btAcessar = new javax.swing.JButton();
         lbTitulo = new javax.swing.JLabel();
         lbImagemPainelLogin = new javax.swing.JLabel();
@@ -48,13 +50,13 @@ public class TelaLogin extends javax.swing.JFrame {
         pLogin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         pLogin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tfNome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tfNome.addActionListener(new java.awt.event.ActionListener() {
+        tfMatricula.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tfMatricula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfNomeActionPerformed(evt);
+                tfMatriculaActionPerformed(evt);
             }
         });
-        pLogin.add(tfNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 59, 210, -1));
+        pLogin.add(tfMatricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 59, 210, -1));
 
         lbNome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lbNome.setText("Matrícula");
@@ -64,15 +66,20 @@ public class TelaLogin extends javax.swing.JFrame {
         lbSenha.setText("Senha");
         pLogin.add(lbSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
 
-        tfsSenha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tfsSenha.addActionListener(new java.awt.event.ActionListener() {
+        pfSenha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        pfSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfsSenhaActionPerformed(evt);
+                pfSenhaActionPerformed(evt);
             }
         });
-        pLogin.add(tfsSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 110, 210, -1));
+        pLogin.add(pfSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 110, 210, -1));
 
         btAcessar.setText("Acessar");
+        btAcessar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAcessarActionPerformed(evt);
+            }
+        });
         pLogin.add(btAcessar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 210, 30));
 
         lbTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -103,13 +110,19 @@ public class TelaLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tfNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNomeActionPerformed
+    private void tfMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfMatriculaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfNomeActionPerformed
+    }//GEN-LAST:event_tfMatriculaActionPerformed
 
-    private void tfsSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfsSenhaActionPerformed
+    private void pfSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pfSenhaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfsSenhaActionPerformed
+    }//GEN-LAST:event_pfSenhaActionPerformed
+
+    private void btAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAcessarActionPerformed
+        JOptionPane.showMessageDialog(null, "USUÁRIO AUTENTICADO COM SUCESSO!");
+        new TelaPrincipal().show();
+        dispose();
+    }//GEN-LAST:event_btAcessarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,7 +169,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel lbSenha;
     private javax.swing.JLabel lbTitulo;
     private javax.swing.JPanel pLogin;
-    private javax.swing.JTextField tfNome;
-    private javax.swing.JPasswordField tfsSenha;
+    private javax.swing.JPasswordField pfSenha;
+    private javax.swing.JTextField tfMatricula;
     // End of variables declaration//GEN-END:variables
 }
