@@ -5,19 +5,23 @@
  */
 package View;
 
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
-
+import Controller.TelaPrincipalController;
+import javax.swing.JFrame;
+import View.TelaLogin;
 /**
  *
  * @author Willy
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
-    boolean tempClientes, tempPedidos, tempProdutos = false;
+    boolean tempTelaAtiva = false;
     
     public TelaPrincipal() {
         initComponents();
         setLocationRelativeTo(null);
+        this.setExtendedState( MAXIMIZED_BOTH );
     }
 
     /**
@@ -43,14 +47,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         miAtalhos = new javax.swing.JMenuItem();
         miSobre = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("PharmaDelivery - Tela Principal");
+        setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lbImagemLogoMenor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/LogoMenor.png"))); // NOI18N
-        getContentPane().add(lbImagemLogoMenor, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+        lbImagemLogoMenor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Logo.png"))); // NOI18N
+        getContentPane().add(lbImagemLogoMenor, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, 110));
 
+        btClientes.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         btClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/clientes.png"))); // NOI18N
         btClientes.setText("Clientes");
         btClientes.addActionListener(new java.awt.event.ActionListener() {
@@ -58,8 +64,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 btClientesActionPerformed(evt);
             }
         });
-        getContentPane().add(btClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 130, 50));
+        getContentPane().add(btClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, 160, 80));
 
+        btPedidos.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         btPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/pedidos.png"))); // NOI18N
         btPedidos.setText("Pedidos");
         btPedidos.addActionListener(new java.awt.event.ActionListener() {
@@ -67,8 +74,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 btPedidosActionPerformed(evt);
             }
         });
-        getContentPane().add(btPedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, 130, 50));
+        getContentPane().add(btPedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 20, 160, 80));
 
+        btProdutos.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         btProdutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/produtos.png"))); // NOI18N
         btProdutos.setText("Produtos");
         btProdutos.addActionListener(new java.awt.event.ActionListener() {
@@ -76,12 +84,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 btProdutosActionPerformed(evt);
             }
         });
-        getContentPane().add(btProdutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 20, 130, 50));
-        getContentPane().add(dpTelaInterna, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 700, 570));
+        getContentPane().add(btProdutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 20, 160, 80));
 
-        lbImagemBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/tema branco azul Menor.jpg"))); // NOI18N
+        dpTelaInterna.setBackground(new java.awt.Color(204, 204, 204));
+        getContentPane().add(dpTelaInterna, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 1200, 780));
+
+        lbImagemBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/tema branco azul.jpg"))); // NOI18N
         lbImagemBackground.setText("jLabel2222");
-        getContentPane().add(lbImagemBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 700));
+        getContentPane().add(lbImagemBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 940));
 
         mSistema.setText("Sistema");
 
@@ -94,6 +104,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         mSistema.add(miDeslogar);
 
         miSair.setText("Sair");
+        miSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miSairActionPerformed(evt);
+            }
+        });
         mSistema.add(miSair);
 
         mbBarraMenu.add(mSistema);
@@ -131,15 +146,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPedidosActionPerformed
-        
-        if(tempPedidos == false){
-            TelaPedidos telaPedidos = new TelaPedidos();
-            dpTelaInterna.add(telaPedidos);
-            telaPedidos.setVisible(true);
-            tempClientes = false;
-            tempPedidos = true;
-            tempProdutos = false;
-        }
+        TelaPrincipalController tPrincipalController = new TelaPrincipalController();
+        tPrincipalController.botaoTelaProdutos(this.dpTelaInterna);
     }//GEN-LAST:event_btPedidosActionPerformed
 
     private void mAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mAjudaActionPerformed
@@ -155,33 +163,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_miAtalhosActionPerformed
 
     private void miDeslogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miDeslogarActionPerformed
-        // TODO add your handling code here:
+        TelaPrincipalController tPrincipalController = new TelaPrincipalController();
+        tPrincipalController.botaoDeslogar(this);
     }//GEN-LAST:event_miDeslogarActionPerformed
 
     private void btClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClientesActionPerformed
-            
-        if(tempClientes == false){
-            TelaClientes telaClientes = new TelaClientes();
-            dpTelaInterna.add(telaClientes);
-            telaClientes.setVisible(true);
-            tempClientes = true;
-            tempPedidos = false;
-            tempProdutos = false;
-        }   
+        TelaPrincipalController tPrincipalController = new TelaPrincipalController();
+        tPrincipalController.botaoTelaClientes(this.dpTelaInterna);
     }//GEN-LAST:event_btClientesActionPerformed
 
     private void btProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProdutosActionPerformed
-        
-        if(tempProdutos == false){
-            TelaProdutos telaProdutos = new TelaProdutos();
-            dpTelaInterna.add(telaProdutos);
-            telaProdutos.setVisible(true);
-            tempClientes = false;
-            tempPedidos = false;
-            tempProdutos = true;
-        }  
+        TelaPrincipalController tPrincipalController = new TelaPrincipalController();
+        tPrincipalController.botaoTelaPedidos(this.dpTelaInterna);
     }//GEN-LAST:event_btProdutosActionPerformed
 
+    private void miSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSairActionPerformed
+        TelaPrincipalController tPrincipalController = new TelaPrincipalController();
+        tPrincipalController.botaoSair();
+    }//GEN-LAST:event_miSairActionPerformed
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -209,7 +208,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -233,4 +232,5 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem miSair;
     private javax.swing.JMenuItem miSobre;
     // End of variables declaration//GEN-END:variables
+
 }

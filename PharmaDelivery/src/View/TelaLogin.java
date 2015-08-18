@@ -80,7 +80,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 btAcessarActionPerformed(evt);
             }
         });
-        pLogin.add(btAcessar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 210, 30));
+        pLogin.add(btAcessar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 210, 30));
 
         lbTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lbTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -111,11 +111,11 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tfMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfMatriculaActionPerformed
-        // TODO add your handling code here:
+        // Aqui vai receber a matrícula do usuário
     }//GEN-LAST:event_tfMatriculaActionPerformed
 
     private void pfSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pfSenhaActionPerformed
-        // TODO add your handling code here:
+        // Aqui vai receber a senha do usuário
     }//GEN-LAST:event_pfSenhaActionPerformed
 
     private void btAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAcessarActionPerformed

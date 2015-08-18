@@ -36,7 +36,7 @@ public class TelaProdutos extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        setPreferredSize(new java.awt.Dimension(700, 600));
+        setPreferredSize(new java.awt.Dimension(1200, 760));
 
         jButton3.setText("jButton1");
 
